@@ -63,7 +63,7 @@ jobs:
          run: |
           ssh -i ~/.test/key.pem -o StrictHostKeyChecking=no "$EC2_USERNAME"@"$EC2_HOST" <<'EOF'
             docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
-            docker run -dit --name my-php-container -p 8080:80 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+            docker run -dit --name my-php -p 8080:80 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
             sudo docker ps
           EOF
 
