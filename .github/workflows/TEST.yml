@@ -8,7 +8,7 @@ on:
 env:
   EC2_HOST: ${{ secrets.EC2_HOST }}
   EC2_USERNAME: ${{ secrets.USERNAME }}
-  EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+  EC2_SSH_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
   AWS_REGION: 'us-east-1'
   ECR_REPOSITORY: 'yashvi/php'
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
