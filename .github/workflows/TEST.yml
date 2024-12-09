@@ -7,7 +7,7 @@ on:
 
 env:
   EC2_HOST: ${{ secrets.EC2_HOST }}
-  EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+  EC2_USERNAME: ${{ secrets.USERNAME }}
   EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
   AWS_REGION: 'us-east-1'
   ECR_REPOSITORY: 'yashvi/php'
@@ -59,7 +59,7 @@ jobs:
 
        - name: SSH into EC2 and run Docker container
          run: |
-          ssh -i ~/.test/key.pem -o StrictHostKeyChecking=no "$EC2_USERNAME"@"$EC2_HOST" <<EOF
+          ssh -i ~/.test/key.pem -o StrictHostKeyChecking=no "$USERNAME"@"$EC2_HOST" <<EOF
           docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
           docker run -dit --name my-php-container -p 8080:80 768734223946.dkr.ecr.us-east-1.amazonaws.com/yashvi/php:latest
           sudo docker ps
@@ -67,4 +67,4 @@ jobs:
 
        - name: Verify Docker container is running on EC2
          run: |
-          ssh -i ~/.test/key.pem -o StrictHostKeyChecking=no "$EC2_USERNAME"@"$EC2_HOST" "sudo docker ps"
+          ssh -i ~/.test/key.pem -o StrictHostKeyChecking=no "$USERNAME"@"$EC2_HOST" "sudo docker ps"
